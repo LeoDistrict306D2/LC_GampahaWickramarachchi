@@ -1,0 +1,178 @@
+@import 'tailwindcss';
+
+/*
+ * Leo Club of Gampaha Wickramarachchi University of Indigenous Medicine (FISSMS)
+ * — "Herbarium"
+ *
+ * The club sits in a faculty of indigenous medicine, so the site borrows the
+ * form of a herbarium sheet: a bordered mounting sheet, a printed label block
+ * in the corner carrying the metadata, and hairline rules everywhere else.
+ *
+ * Motion is almost absent by design. A scholarly record does not slide around;
+ * things fade in at most, and only once.
+ *
+ * Token names are ROLES, not hues.
+ */
+
+@theme {
+  /* --- Surfaces ------------------------------------------------------- */
+  --color-page: #f4f1e6;
+  --color-panel: #ebe7d8;
+  --color-inverse: #1e2a22;
+  --color-on-inverse: #f4f1e6;
+
+  /* --- Text ----------------------------------------------------------- */
+  --color-ink: #1e2a22;
+  --color-ink-muted: #4c5a50;
+  --color-ink-faint: #7a867d;
+
+  /* --- Accents --------------------------------------------------------- */
+  /* Green carries interaction; umber is reserved for label type only. */
+  --color-accent: #2f5d3a;
+  --color-accent-strong: #1f3f27;
+  --color-label: #6b4f2a;
+
+  /* --- Lines ----------------------------------------------------------- */
+  --color-rule: #d6d0bc;
+  --color-rule-strong: #b3ab92;
+
+  /* --- Type ------------------------------------------------------------ */
+  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --text-plate: 3.5rem;
+  --text-plate--line-height: 1.06;
+  --text-plate--letter-spacing: -0.02em;
+
+  --ease-still: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@layer base {
+  html {
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: var(--color-page);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+    font-optical-sizing: auto;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-accent) 20%, transparent);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .wrap {
+    width: 100%;
+    max-width: 74rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .wrap {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  /* Narrow measure for running prose — roughly 66 characters. */
+  .measure {
+    max-width: 36rem;
+  }
+
+  .band {
+    padding-block: 4.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .band {
+      padding-block: 6.5rem;
+    }
+  }
+
+  /*
+   * The mounting sheet: a hairline border with generous internal margin, the
+   * way a pressed specimen is mounted with room around it. Everything of
+   * substance on this site sits on one.
+   */
+  .sheet {
+    border: 1px solid var(--color-rule-strong);
+    background-color: var(--color-page);
+    padding: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .sheet {
+      padding: 2rem;
+    }
+  }
+
+  /* The printed label block that carries a sheet's metadata. */
+  .label {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-label);
+  }
+
+  /* Determination table — the label's term/value rows. */
+  .determination dt {
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-ink-faint);
+  }
+
+  .determination dd {
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    color: var(--color-ink);
+  }
+
+  /*
+   * Reveal. Opacity only — no movement. A herbarium sheet does not slide onto
+   * the page, and the restraint is the point of this design.
+   */
+  .reveal {
+    transition: opacity 500ms var(--ease-still);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .reveal.is-hidden {
+    opacity: 0;
+  }
+}
