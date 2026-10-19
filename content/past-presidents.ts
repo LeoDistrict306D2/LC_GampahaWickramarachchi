@@ -1,12 +1,17 @@
 import type { PastPresident } from '@/lib/types';
 
-/** TODO(content): confirm years, names and themes with the club. */
+/**
+ * The club's Project Web Weavers submission covered only the current board
+ * (Section D). The one confirmed prior year comes from the club's own
+ * achievements text (Section C): Leo Jeena Randuni Peiris served as
+ * President through 2025/26, recognised among the district's Top 10 Club
+ * Presidents at D2 Con '26 before Leo Thilini Lakshika's installation as
+ * President for 2026/27 at ASCEND '26. Earlier years are not yet documented.
+ */
 export const pastPresidents: PastPresident[] = [
-  { year: '2018/19', name: 'Leo Sandun Ratnayake', theme: 'Charter Year', highlights: ['Chartered the club', 'First supervised clinic held'] },
-  { year: '2019/20', name: 'Leo Menaka Fernando', theme: 'Into the Villages' },
-  { year: '2020/21', name: 'Leo Dilan Wijesekara', theme: 'Hold Steady', highlights: ['Kept documentation work running through closures'] },
-  { year: '2021/22', name: 'Leo Amali Kumarasinghe', theme: 'Grow It Here', highlights: ['Established Osu Uyana on campus'] },
-  { year: '2022/23', name: 'Leo Rasindu Jayasuriya', theme: 'Write It Down' },
-  { year: '2023/24', name: 'Leo Nadeeka Alwis', theme: 'Come Back', highlights: ['Introduced the four-village clinic rotation'] },
-  { year: '2024/25', name: 'Leo Chamath Ekanayake', theme: 'With Consent' },
+  {
+    year: '2025/26',
+    name: 'Leo Jeena Randuni Peiris',
+    highlights: ['Top 10 Club Presidents, D2 Con ’26'],
+  },
 ];

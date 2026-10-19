@@ -1,13 +1,15 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import { club } from '@/content/club';
 import { projects } from '@/content/projects';
 import { board } from '@/content/board';
-import { byDateDesc, sortExecutives } from '@/lib/utils';
+import { byDateDesc, sortExecutives, cn } from '@/lib/utils';
 import { Photo } from '@/components/Photo';
 import { Reveal } from '@/components/Reveal';
 import { Determination } from '@/components/Determination';
 import { SpecimenSheet, accessionFor } from '@/components/SpecimenSheet';
+import { district } from '@/content/district';
 
 /**
  * Home.
@@ -143,8 +145,8 @@ export default function HomePage() {
               Who holds the record
             </h2>
             <p className="measure mt-4 text-ink-muted">
-              The board for {leadership[0]?.term ?? 'this year'}. All clinical activity is
-              supervised by faculty; the board organises it.
+              The Executive Committee for {leadership[0]?.term ?? 'this year'}, installed at
+              ASCEND &rsquo;26 on 12 September 2026.
             </p>
             <Link
               href="/board"
@@ -170,14 +172,66 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* District ---------------------------------------------------------- */}
+      <section className="border-y border-rule-strong bg-panel band" aria-labelledby="district-heading">
+        <div className="wrap grid gap-10 md:grid-cols-12 md:items-center">
+          <div className="md:col-span-5">
+            <Image
+              src={district.mapImage.src}
+              alt={district.mapImage.alt}
+              width={district.mapImage.width}
+              height={district.mapImage.height}
+              className="h-auto w-24 border border-rule-strong"
+            />
+            <p className="label mt-6">Part of a wider network</p>
+            <h2 id="district-heading" className="mt-3 font-serif text-3xl text-ink md:text-4xl">
+              {district.name}
+            </h2>
+            <p className="measure mt-4 text-ink-muted leading-relaxed">{district.description}</p>
+            <a
+              href={district.url}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-6 inline-flex items-center gap-2 border border-accent px-6 py-3 text-sm text-accent transition-colors hover:bg-accent hover:text-page"
+            >
+              Explore the district ↗
+            </a>
+          </div>
+
+          <div className="md:col-span-6 md:col-start-7">
+            <div className="sheet">
+              <p className="label">Leo clubs in the district</p>
+              <ul className="determination mt-4 grid gap-x-6 gap-y-0 border-t border-rule sm:grid-cols-2">
+                {district.clubs.map((name) => {
+                  const isUs = name === 'Gampaha Wickramarachchi University of Indigenous Medicine FISSMS';
+                  return (
+                    <li
+                      key={name}
+                      className={cn(
+                        'border-b border-rule py-2 text-sm',
+                        isUs ? 'font-semibold text-accent-strong' : 'text-ink-muted',
+                      )}
+                    >
+                      {isUs ? '• ' : ''}
+                      {name}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Close ----------------------------------------------------------- */}
       <section className="bg-inverse text-on-inverse">
         <div className="wrap band flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div>
             <h2 className="font-serif text-3xl md:text-4xl">Join the club.</h2>
             <p className="measure mt-3 text-on-inverse/70">
-              Open to all students of the university. You will be on a supervised clinic rotation
-              within your first term.
+              Open to undergraduates of Gampaha Wickramarachchi University of Indigenous
+              Medicine, particularly students connected with the Faculty of Indigenous Social
+              Sciences and Management Studies.
             </p>
           </div>
           <Link

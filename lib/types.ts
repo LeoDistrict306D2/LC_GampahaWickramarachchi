@@ -25,6 +25,8 @@ export interface SocialLinks {
   linkedin?: string;
   youtube?: string;
   tiktok?: string;
+  /** A broadcast/follow channel link, not a 1:1 chat number. */
+  whatsapp?: string;
   email?: string;
 }
 
@@ -50,7 +52,9 @@ export type ExecutiveRank =
   | 'editor'
   | 'chairperson'
   | 'director'
-  | 'member';
+  | 'member'
+  /** Lion Advisor / Senior Leo — outside the elected line, listed last. */
+  | 'advisor';
 
 export interface Executive {
   id: string;
@@ -135,6 +139,10 @@ export interface Club {
   description: string;
   /** ISO date the club was chartered. */
   charterDate?: string;
+  clubNumber?: string;
+  clubType?: string;
+  region?: string;
+  zone?: string;
   district: string;
   multipleDistrict: string;
   sponsoringLionsClub?: string;

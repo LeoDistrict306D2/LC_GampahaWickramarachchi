@@ -17,7 +17,7 @@ export default function GalleryPage() {
       <PageMasthead
         kicker="Plates"
         title="From the field."
-        standfirst="Photographs taken during clinics, garden work and documentation visits, filed against the record they belong to."
+        standfirst="Photographs from club projects and district events, filed against the record they belong to."
       />
 
       <div className="wrap band">

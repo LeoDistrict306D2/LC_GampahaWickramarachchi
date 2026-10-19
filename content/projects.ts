@@ -1,151 +1,76 @@
 import type { Project } from '@/lib/types';
 
-/**
- * Project records.
- *
- * TODO(content): illustrative records in the club's format — replace with real
- * project data. `heroImage` points at the shared placeholder until real
- * photography exists.
- */
 const placeholder = (alt: string) => ({
   src: '/images/projects/placeholder.png',
   alt,
   width: 1600,
-  height: 1067,
+  height: 1200,
 });
 
+/**
+ * Projects & events, from the club's own Project Web Weavers submission
+ * (Section F). Only D2 Con '26 has a confirmed, matching photograph from the
+ * photos the club supplied; ASCEND '26 and Nexus '26 use the shared
+ * placeholder until event-specific photos are available.
+ */
 export const projects: Project[] = [
   {
-    id: 'sanjeewani',
-    slug: 'sanjeewani',
-    title: 'Sanjeewani',
+    id: 'ascend-26',
+    slug: 'ascend-26',
+    title: "ASCEND '26 — 4th Installation Ceremony",
     summary:
-      'A supervised mobile clinic programme serving four villages in the Gampaha district, with scheduled follow-up visits.',
-    category: 'health',
+      'The 4th Installation Ceremony of the Leo Club of GWUIM–FISSMS, installing the 2026/27 Executive Committee.',
+    category: 'leadership',
+    year: '2026/27',
+    date: '2026-09-12',
+    featured: true,
+    heroImage: placeholder("The ASCEND '26 Installation Ceremony"),
+    story: [
+      'The 4th Installation Ceremony of the Leo Club of GWUIM–FISSMS, celebrating club achievements and officially installing the new Executive Committee. The event emphasised leadership, service, fellowship, inspiration and reaching greater heights.',
+    ],
+  },
+  {
+    id: 'd2-con-26',
+    slug: 'd2-con-26',
+    title: 'D2 Con ’26',
+    summary:
+      'District-level Leo convention where the club was recognised among the Top 10 Leo Clubs and received 3rd Highest Membership Growth.',
+    category: 'leadership',
     year: '2025/26',
-    date: '2025-07-19',
-    location: 'Gampaha district',
+    date: '2026-06-20',
     featured: true,
-    heroImage: placeholder('A supervised mobile clinic session in a village hall'),
+    heroImage: {
+      src: '/images/projects/d2-con-26/hero.jpg',
+      alt: 'Leo Club of GWUIM FISSMS recognised among the Top 10 Club Presidents at D2 Con ’26',
+      width: 2048,
+      height: 1365,
+    },
+    gallery: [
+      {
+        src: '/images/projects/d2-con-26/g1.jpg',
+        alt: 'Club members on stage at D2 Con ’26',
+        width: 1800,
+        height: 1390,
+      },
+    ],
     story: [
-      'Sanjeewani runs on a fixed rotation: four villages, one Saturday each per month, with two faculty members supervising every session.',
-      'The rotation is the design decision that matters. A clinic that visits once produces a queue, a photograph, and no information. A clinic that returns produces case notes, and case notes are the only way to know whether anything worked.',
-      'Patients are referred on to the university teaching hospital where the presentation is outside our scope. Roughly one in nine is, which is itself a useful number to have.',
+      'District-level Leo convention and recognition event where the club was recognised among the Top 10 Leo Clubs and received the 3rd Highest Membership Growth recognition. Club leadership and projects also received recognition and nominations, including President Leo Jeena Randuni Peiris among the district’s Top 10 Club Presidents.',
     ],
-    objectives: [
-      'Hold a supervised clinic in each of four villages every month',
-      'Keep case notes and schedule follow-ups from the first visit',
-      'Refer presentations outside scope rather than treating them',
-    ],
-    impact: [
-      { id: 'clinics', value: 34, label: 'Clinics held' },
-      { id: 'patients', value: 4100, suffix: '+', label: 'Patients seen' },
-      { id: 'referrals', value: 448, label: 'Referred onward' },
-    ],
-    partners: [{ name: 'GWUIM Teaching Hospital' }],
   },
   {
-    id: 'osu-uyana',
-    slug: 'osu-uyana',
-    title: 'Osu Uyana',
+    id: 'nexus-26-mid-year-review',
+    slug: 'nexus-26-mid-year-review',
+    title: "Nexus '26 Mid-Year Review",
     summary:
-      'A medicinal plant garden maintained on campus, supplying the clinics and propagating outward to village gardens.',
-    category: 'environment',
+      'District/club review held at the University of Sri Jayewardenepura, where the club’s progress was reviewed.',
+    category: 'leadership',
     year: '2025/26',
-    date: '2025-03-08',
-    location: 'GWUIM campus, Yakkala',
+    date: '2026-01-24',
+    location: 'University of Sri Jayewardenepura',
     featured: true,
-    heroImage: placeholder('Students working in the campus medicinal plant garden'),
+    heroImage: placeholder("Nexus '26 Mid-Year Review"),
     story: [
-      'The garden holds 112 species. It exists so that students learn a plant standing in the ground before they meet it dried in a jar.',
-      'It also supplies the Sanjeewani clinics, which closes a loop that is usually open: the same members who prescribe a preparation have grown, harvested and prepared it.',
-      'Cuttings go out to household gardens in the villages on the clinic rotation. Ninety-four households now grow at least five of the species themselves.',
-    ],
-    objectives: [
-      'Maintain a documented living collection for teaching use',
-      'Supply the mobile clinics from the garden rather than by purchase',
-      'Propagate priority species out to village household gardens',
-    ],
-    impact: [
-      { id: 'species', value: 112, label: 'Species maintained' },
-      { id: 'households', value: 94, label: 'Village gardens started' },
-      { id: 'cuttings', value: 1300, suffix: '+', label: 'Cuttings distributed' },
-    ],
-  },
-  {
-    id: 'parampara',
-    slug: 'parampara',
-    title: 'Parampara',
-    summary:
-      'Documenting traditional preparations with named practitioners, recorded with consent and returned to them in print.',
-    category: 'education',
-    year: '2024/25',
-    date: '2024-12-02',
-    location: 'Gampaha and Kurunegala districts',
-    featured: true,
-    heroImage: placeholder('A student recording a traditional practitioner’s preparation notes'),
-    story: [
-      'Much of what is known in these villages is held by one or two elderly practitioners and has never been written down. When they go, it goes.',
-      'Parampara records preparations with the practitioner named and credited, under written consent, and returns a bound copy to them before anything is archived. Nineteen practitioners have taken part.',
-      'The faculty holds the archive. Nothing is published commercially, and nothing is collected anonymously — that was the condition several practitioners set, and it was the right one.',
-    ],
-    objectives: [
-      'Record preparations under written, informed consent',
-      'Name and credit every practitioner who contributes',
-      'Return a bound copy to the practitioner before archiving',
-    ],
-    impact: [
-      { id: 'practitioners', value: 19, label: 'Practitioners recorded' },
-      { id: 'preparations', value: 240, label: 'Preparations documented' },
-      { id: 'villages', value: 11, label: 'Villages visited' },
-    ],
-  },
-  {
-    id: 'nutrition-survey',
-    slug: 'nutrition-survey',
-    title: 'Nutrition Survey',
-    summary:
-      'A household nutrition survey across two villages, conducted with the faculty of social sciences.',
-    category: 'health',
-    year: '2024/25',
-    date: '2024-08-17',
-    location: 'Gampaha district',
-    heroImage: placeholder('Students conducting a household nutrition survey'),
-    impact: [
-      { id: 'households', value: 310, label: 'Households surveyed' },
-      { id: 'children', value: 186, label: 'Children assessed' },
-    ],
-  },
-  {
-    id: 'blood-camp',
-    slug: 'blood-camp',
-    title: 'Blood Camp',
-    summary: 'An annual campus donation camp with the National Blood Transfusion Service.',
-    category: 'health',
-    year: '2023/24',
-    date: '2024-04-11',
-    location: 'GWUIM campus, Yakkala',
-    heroImage: placeholder('Donors at the campus blood donation camp'),
-    impact: [
-      { id: 'units', value: 96, label: 'Units collected' },
-      { id: 'donors', value: 112, label: 'Donors attended' },
-    ],
-    partners: [{ name: 'National Blood Transfusion Service' }],
-  },
-  {
-    id: 'first-clinic',
-    slug: 'first-clinic',
-    title: 'First Clinic',
-    summary:
-      'The club’s first supervised clinic, held in Yakkala three months after charter.',
-    category: 'health',
-    year: '2018/19',
-    date: '2019-02-16',
-    location: 'Yakkala',
-    heroImage: placeholder('The club’s first supervised community clinic'),
-    impact: [
-      { id: 'patients', value: 78, label: 'Patients seen' },
-      { id: 'members', value: 21, label: 'Members attended' },
+      'Mid-Year Review held at the University of Sri Jayewardenepura, where the club’s progress was reviewed and Leo Thilini Lakshika was recognised among the Top 3 Club Vice Presidents.',
     ],
   },
 ];

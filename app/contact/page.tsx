@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Facebook, Instagram, Mail, MapPin, Phone } from 'lucide-react';
+import { Facebook, Instagram, Mail, MapPin, MessageCircle, Music2, Phone, Youtube } from 'lucide-react';
 import { club } from '@/content/club';
 import { PageMasthead } from '@/components/PageMasthead';
 
@@ -15,7 +15,7 @@ export default function ContactPage() {
       <PageMasthead
         kicker="Contact"
         title="Get in touch."
-        standfirst="For collaborations, clinic requests, or practitioners willing to contribute to the documentation archive."
+        standfirst="For collaborations, project enquiries, or to support the club's work directly."
       />
 
       <div className="wrap band grid gap-12 md:grid-cols-12">
@@ -103,11 +103,75 @@ export default function ContactPage() {
                 </a>
               </li>
             ) : null}
+            {club.socials.youtube ? (
+              <li className="border-b border-rule">
+                <a
+                  href={club.socials.youtube}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="flex items-center gap-3 py-4 text-ink-muted transition-colors hover:text-accent"
+                >
+                  <Youtube aria-hidden size={17} />
+                  YouTube
+                </a>
+              </li>
+            ) : null}
+            {club.socials.tiktok ? (
+              <li className="border-b border-rule">
+                <a
+                  href={club.socials.tiktok}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="flex items-center gap-3 py-4 text-ink-muted transition-colors hover:text-accent"
+                >
+                  <Music2 aria-hidden size={17} />
+                  TikTok
+                </a>
+              </li>
+            ) : null}
+            {club.socials.whatsapp ? (
+              <li className="border-b border-rule">
+                <a
+                  href={club.socials.whatsapp}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="flex items-center gap-3 py-4 text-ink-muted transition-colors hover:text-accent"
+                >
+                  <MessageCircle aria-hidden size={17} />
+                  WhatsApp Channel
+                </a>
+              </li>
+            ) : null}
+          </ul>
+
+          <p className="label mt-10">Downloads</p>
+          <ul className="mt-4 border-t border-rule">
+            <li className="border-b border-rule">
+              <a
+                href="https://anyflip.com/bookcase/tclyj"
+                target="_blank"
+                rel="noreferrer noopener"
+                className="flex items-center py-4 text-sm text-ink-muted transition-colors hover:text-accent"
+              >
+                Newsletter
+              </a>
+            </li>
+            <li className="border-b border-rule">
+              <a
+                href="https://anyflip.com/dszco/sbpa/"
+                target="_blank"
+                rel="noreferrer noopener"
+                className="flex items-center py-4 text-sm text-ink-muted transition-colors hover:text-accent"
+              >
+                Club directory, 2026/27
+              </a>
+            </li>
           </ul>
 
           <p className="mt-8 text-sm leading-relaxed text-ink-faint">
-            Looking to join rather than get in touch? The membership page has a form that reaches
-            the secretary directly.
+            The club accepts donations in support of its projects — contact the club directly for
+            details. Looking to join rather than get in touch? The membership page has a form
+            that reaches the secretary directly.
           </p>
         </section>
       </div>

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Facebook, Instagram, Mail } from 'lucide-react';
+import { Facebook, Instagram, Mail, MessageCircle, Music2, Youtube } from 'lucide-react';
 import { club } from '@/content/club';
 
 /**
@@ -74,6 +74,45 @@ export function SiteFooter() {
                     className="inline-flex h-10 w-10 items-center justify-center border border-rule-strong text-ink-muted transition-colors hover:border-accent hover:text-accent"
                   >
                     <Instagram aria-hidden size={17} />
+                  </a>
+                </li>
+              ) : null}
+              {club.socials.youtube ? (
+                <li>
+                  <a
+                    href={club.socials.youtube}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    aria-label="YouTube"
+                    className="inline-flex h-10 w-10 items-center justify-center border border-rule-strong text-ink-muted transition-colors hover:border-accent hover:text-accent"
+                  >
+                    <Youtube aria-hidden size={17} />
+                  </a>
+                </li>
+              ) : null}
+              {club.socials.tiktok ? (
+                <li>
+                  <a
+                    href={club.socials.tiktok}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    aria-label="TikTok"
+                    className="inline-flex h-10 w-10 items-center justify-center border border-rule-strong text-ink-muted transition-colors hover:border-accent hover:text-accent"
+                  >
+                    <Music2 aria-hidden size={17} />
+                  </a>
+                </li>
+              ) : null}
+              {club.socials.whatsapp ? (
+                <li>
+                  <a
+                    href={club.socials.whatsapp}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    aria-label="WhatsApp Channel"
+                    className="inline-flex h-10 w-10 items-center justify-center border border-rule-strong text-ink-muted transition-colors hover:border-accent hover:text-accent"
+                  >
+                    <MessageCircle aria-hidden size={17} />
                   </a>
                 </li>
               ) : null}

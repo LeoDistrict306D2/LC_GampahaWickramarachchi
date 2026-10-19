@@ -5,26 +5,26 @@ import { JoinForm } from '@/components/JoinForm';
 
 export const metadata: Metadata = {
   title: 'Join',
-  description: `Membership of ${club.name} is open to all students of the university.`,
+  description: `Membership of ${club.name} is open to undergraduates of Gampaha Wickramarachchi University of Indigenous Medicine.`,
   alternates: { canonical: '/join' },
 };
 
 const reasons = [
   {
-    title: 'Supervised clinical practice',
-    body: 'You will join a clinic rotation within your first term, always under faculty supervision. Practice before graduation, properly overseen.',
+    title: 'Leadership development',
+    body: 'Every member is given room to lead a project, with the club’s own officers having come up the same way.',
   },
   {
-    title: 'Field documentation',
-    body: 'Working on Parampara means sitting with practitioners, taking consent, and writing preparations up to a standard the faculty will archive.',
+    title: 'Practical service experience',
+    body: 'Teamwork and fellowship across eight active focus areas, from healthcare and education to environmental conservation.',
   },
   {
-    title: 'Propagation and preparation',
-    body: 'The campus garden supplies the clinics. Members learn a plant standing in the ground before they meet it dried in a jar.',
+    title: 'Communication and organisation',
+    body: 'Opportunities to participate in district and club projects, and to develop the organisational skills that run them.',
   },
   {
-    title: 'Something to point at',
-    body: 'A named contribution to a documented archive is worth more than another certificate of participation.',
+    title: 'Networking and impact',
+    body: 'A named contribution to a club recognised among Leo District 306 D2’s Top 10 Leo Clubs in 2025/26.',
   },
 ];
 
@@ -34,7 +34,7 @@ export default function JoinPage() {
       <PageMasthead
         kicker="Membership"
         title="Join the club."
-        standfirst="Open to all students of the university. No prior experience is expected — supervision is built into everything we do."
+        standfirst="Open to undergraduates of Gampaha Wickramarachchi University of Indigenous Medicine, particularly students connected with the Faculty of Indigenous Social Sciences and Management Studies."
       />
 
       <div className="wrap band grid gap-14 md:grid-cols-12">

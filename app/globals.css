@@ -7,6 +7,7 @@
  * The club sits in a faculty of indigenous medicine, so the site borrows the
  * form of a herbarium sheet: a bordered mounting sheet, a printed label block
  * in the corner carrying the metadata, and hairline rules everywhere else.
+ * The palette is the club's own crest — Maroon and Gold.
  *
  * Motion is almost absent by design. A scholarly record does not slide around;
  * things fade in at most, and only once.
@@ -16,25 +17,26 @@
 
 @theme {
   /* --- Surfaces ------------------------------------------------------- */
-  --color-page: #f4f1e6;
-  --color-panel: #ebe7d8;
-  --color-inverse: #1e2a22;
-  --color-on-inverse: #f4f1e6;
+  --color-page: #f7f1e3;
+  --color-panel: #efe2c4;
+  --color-inverse: #3b1413;
+  --color-on-inverse: #f7ecd8;
 
   /* --- Text ----------------------------------------------------------- */
-  --color-ink: #1e2a22;
-  --color-ink-muted: #4c5a50;
-  --color-ink-faint: #7a867d;
+  --color-ink: #2a1211;
+  --color-ink-muted: #6b4340;
+  --color-ink-faint: #9c7c72;
 
   /* --- Accents --------------------------------------------------------- */
-  /* Green carries interaction; umber is reserved for label type only. */
-  --color-accent: #2f5d3a;
-  --color-accent-strong: #1f3f27;
-  --color-label: #6b4f2a;
+  /* Gold carries interaction; maroon — the crest's own colour — is the
+     stronger hover/strong state and the label type. */
+  --color-accent: #b9790e;
+  --color-accent-strong: #5f2c2b;
+  --color-label: #8a5a12;
 
   /* --- Lines ----------------------------------------------------------- */
-  --color-rule: #d6d0bc;
-  --color-rule-strong: #b3ab92;
+  --color-rule: #e3d5b8;
+  --color-rule-strong: #c9b68c;
 
   /* --- Type ------------------------------------------------------------ */
   --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;

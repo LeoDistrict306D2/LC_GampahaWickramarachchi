@@ -23,7 +23,7 @@ export default function BoardPage() {
       <PageMasthead
         kicker={term ? `Office bearers ${term}` : 'Office bearers'}
         title="Who holds the record."
-        standfirst="The elected board and directors. Clinical activity is supervised by faculty; the board organises it."
+        standfirst="The Executive Committee elected for the 2026/27 term, installed at ASCEND '26 on 12 September 2026."
       />
 
       <div className="wrap band">

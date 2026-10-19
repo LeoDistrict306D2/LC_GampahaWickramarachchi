@@ -9,7 +9,8 @@ Next.js 16 · React 19 · TypeScript · Tailwind CSS v4
 medicine, so the site borrows the form of a herbarium sheet: a bordered mounting
 sheet, a printed determination label carrying the metadata, and hairline rules
 everywhere else. Projects are presented as **specimen sheets with accession
-numbers**, not cards.
+numbers**, not cards. The palette is the club's own crest colours — Maroon and
+Gold — on parchment.
 
 Motion is almost absent by design — opacity only, no movement. A scholarly
 record does not slide around.
@@ -53,15 +54,16 @@ Tokens live in the `@theme` block at the top of `app/globals.css`, named by
 
 | Token | Value | Used for |
 |---|---|---|
-| `--color-page` | `#f4f1e6` | Parchment ground |
-| `--color-panel` | `#ebe7d8` | Alternate bands |
-| `--color-ink` | `#1e2a22` | Body text |
-| `--color-ink-muted` | `#4c5a50` | Running prose |
-| `--color-ink-faint` | `#7a867d` | Label terms |
-| `--color-accent` | `#2f5d3a` | Links, buttons — green carries interaction |
-| `--color-label` | `#6b4f2a` | Umber. **Label type only**, never body copy |
-| `--color-inverse` | `#1e2a22` | Closing band |
-| `--color-rule` | `#d6d0bc` | Hairlines |
+| `--color-page` | `#f7f1e3` | Parchment ground |
+| `--color-panel` | `#efe2c4` | Alternate bands |
+| `--color-ink` | `#2a1211` | Body text |
+| `--color-ink-muted` | `#6b4340` | Running prose |
+| `--color-ink-faint` | `#9c7c72` | Label terms |
+| `--color-accent` | `#b9790e` | Gold — links, buttons, interaction |
+| `--color-accent-strong` | `#5f2c2b` | Maroon — the crest's own colour, hover state |
+| `--color-label` | `#8a5a12` | Label type only, never body copy |
+| `--color-inverse` | `#3b1413` | Closing band |
+| `--color-rule` | `#e3d5b8` | Hairlines |
 
 Type: Fraunces (variable serif with optical sizing) + Inter, self-hosted via
 `next/font`. Fraunces is used at everything from 3.5rem plate titles down to
@@ -152,12 +154,28 @@ Every route prerenders, so any Node host or Vercel works.
 
 ## Outstanding content
 
-Everything marked `TODO(content)` needs real values from the club: charter date,
-board roster, project records, photography and contact details. Images in
-`public/images/` are generated solid-colour placeholders. The site renders
-correctly while these are incomplete.
+This site now runs on real data from the club's completed Project Web Weavers
+submission, with real photography for the logo, home page hero, About page,
+one gallery plate, and D2 Con '26's project record. What's still missing
+rather than fabricated:
 
-One editorial note carried into the copy: the Parampara project describes a
-consent-first approach to recording named practitioners. If the club's actual
-practice differs, that copy should be corrected before launch — it makes a
-specific ethical claim on the club's behalf.
+- **Officer photographs** — the form's photo-folder link for the Executive
+  Committee (`14x0MsF1NQJoFROW8ROVMyw…`) 404s, most likely cut by a line
+  wrap when the form text was copied in. All ten board members render the
+  `getInitials` fallback until a working link is supplied.
+- **ASCEND '26** and **Nexus '26 Mid-Year Review** have no confirmed
+  matching photograph (the photos the club sent are either general club
+  photos or specific to D2 Con '26); both use the shared
+  `/images/projects/placeholder.png` until event-specific photos arrive.
+- **Past presidents before 2025/26** are not documented — only the current
+  president's immediate predecessor (Leo Jeena Randuni Peiris, named in the
+  club's own achievements text) is recorded.
+- **Donation bank details** were not supplied (the form lists a phone number
+  to contact instead of an account), so no structured donation details are
+  shown — only a note to contact the club directly.
+- **No sponsoring Lions Club** was named on the form, so that field and the
+  footer's "Sponsored by…" line are omitted rather than guessed.
+
+`scripts_resize.py` in the project root is the one-off Pillow script used to
+process the source photos into `public/images/`; it is not part of the app
+and is safe to delete.

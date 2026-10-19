@@ -16,9 +16,9 @@ export default function PastPresidentsPage() {
   return (
     <>
       <PageMasthead
-        kicker={`${years.length} terms`}
+        kicker={`${years.length} ${years.length === 1 ? 'term documented' : 'terms'}`}
         title="Succession."
-        standfirst="Each president sets a theme for the year. Read in sequence, they are a fair account of what the club has been working on."
+        standfirst="Earlier years are not yet documented — this page will grow as the club confirms them."
       />
 
       <div className="wrap band">
