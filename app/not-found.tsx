@@ -9,12 +9,15 @@ export default function NotFound() {
         The page you asked for is not in the archive. It may have been renamed, or never existed.
       </p>
       <div className="mt-8 flex flex-wrap gap-3">
-        <Link href="/" className="border border-accent bg-accent px-6 py-3 text-sm text-page hover:bg-accent-strong">
+        <Link
+          href="/"
+          className="rounded-full bg-gradient-to-r from-accent to-accent-strong px-6 py-3 text-sm font-bold text-on-inverse"
+        >
           Home
         </Link>
         <Link
           href="/projects"
-          className="border border-rule-strong px-6 py-3 text-sm text-ink-muted hover:border-ink hover:text-ink"
+          className="rounded-full border border-rule-strong px-6 py-3 text-sm text-ink-muted hover:border-ink hover:text-ink"
         >
           Project records
         </Link>

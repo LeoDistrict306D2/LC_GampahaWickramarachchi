@@ -2,56 +2,114 @@
 
 /*
  * Leo Club of Gampaha Wickramarachchi University of Indigenous Medicine (FISSMS)
- * — "Herbarium"
+ * — "Herbarium, after dark"
  *
- * The club sits in a faculty of indigenous medicine, so the site borrows the
- * form of a herbarium sheet: a bordered mounting sheet, a printed label block
- * in the corner carrying the metadata, and hairline rules everywhere else.
- * The palette is the club's own crest — Maroon and Gold.
- *
- * Motion is almost absent by design. A scholarly record does not slide around;
- * things fade in at most, and only once.
+ * Redesigned to follow the look of Leo Club of Polgasowita's site: a dark
+ * ground, glass cards with backdrop blur, gold glow, Space Grotesk headings,
+ * Ken Burns photography and fade-up reveals — built in this club's own crest
+ * colours (maroon and gold) rather than Polgasowita's navy and gold.
  *
  * Token names are ROLES, not hues.
  */
 
 @theme {
   /* --- Surfaces ------------------------------------------------------- */
-  --color-page: #f7f1e3;
-  --color-panel: #efe2c4;
-  --color-inverse: #3b1413;
-  --color-on-inverse: #f7ecd8;
+  /* Near-black with a warm maroon undertone — this club's answer to
+     Polgasowita's navy-950. */
+  --color-page: #150807;
+  --color-panel: #1f0d0b;
+  --color-raised: #2a1410;
+  /* The former light parchment page, now used sparingly as a bright
+     contrast band rather than the default surface. */
+  --color-inverse: #f7ecd8;
+  --color-on-inverse: #2a1211;
 
   /* --- Text ----------------------------------------------------------- */
-  --color-ink: #2a1211;
-  --color-ink-muted: #6b4340;
-  --color-ink-faint: #9c7c72;
+  --color-ink: #f7ece0;
+  --color-ink-muted: #cbb3a7;
+  --color-ink-faint: #8a6d63;
 
   /* --- Accents --------------------------------------------------------- */
-  /* Gold carries interaction; maroon — the crest's own colour — is the
-     stronger hover/strong state and the label type. */
-  --color-accent: #b9790e;
-  --color-accent-strong: #5f2c2b;
-  --color-label: #8a5a12;
+  /* Gold carries interaction and glow, exactly as it does on Polgasowita.
+     Ember is the crest's own maroon, brightened for use as a second glow on
+     a dark ground — never as body text. */
+  --color-accent: #e3ab42;
+  --color-accent-strong: #f3c874;
+  --color-label: #d9ab52;
+  --color-ember: #a8473c;
 
   /* --- Lines ----------------------------------------------------------- */
-  --color-rule: #e3d5b8;
-  --color-rule-strong: #c9b68c;
+  /* Hairlines are translucent light-on-dark, same as Polgasowita's glass
+     borders. */
+  --color-rule: rgba(247, 236, 224, 0.1);
+  --color-rule-strong: rgba(247, 236, 224, 0.18);
 
   /* --- Type ------------------------------------------------------------ */
-  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-serif: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
   --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
-  --text-plate: 3.5rem;
-  --text-plate--line-height: 1.06;
+  --text-plate: 3.75rem;
+  --text-plate--line-height: 1.04;
   --text-plate--letter-spacing: -0.02em;
 
-  --ease-still: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-still: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* --- Motion ------------------------------------------------------------ */
+  --animate-fade-up: fadeUp 0.8s var(--ease-still) both;
+  --animate-float: float 8s ease-in-out infinite;
+  --animate-pulse-soft: pulseSoft 6s ease-in-out infinite;
+  --animate-shimmer: shimmer 2s linear infinite;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+  66% {
+    transform: translateY(6px) rotate(-1deg);
+  }
+}
+
+@keyframes pulseSoft {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 @layer base {
   html {
     scroll-padding-top: 6rem;
+    color-scheme: dark;
   }
 
   body {
@@ -66,7 +124,7 @@
   h2,
   h3 {
     font-family: var(--font-serif);
-    font-optical-sizing: auto;
+    letter-spacing: -0.02em;
     text-wrap: balance;
   }
 
@@ -80,7 +138,18 @@
   }
 
   ::selection {
-    background: color-mix(in srgb, var(--color-accent) 20%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 30%, transparent);
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-page);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--color-accent) 35%, transparent);
+    border-radius: 3px;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -125,14 +194,28 @@
   }
 
   /*
-   * The mounting sheet: a hairline border with generous internal margin, the
-   * way a pressed specimen is mounted with room around it. Everything of
-   * substance on this site sits on one.
+   * The glass card. This used to be a hairline-bordered mounting sheet; it
+   * is now Polgasowita's glass card, in this club's own ground colour.
+   * `.sheet` is kept as the class name so every component built on it
+   * (SpecimenSheet, Determination, the splash) carries the new look with no
+   * markup changes.
    */
   .sheet {
-    border: 1px solid var(--color-rule-strong);
-    background-color: var(--color-page);
-    padding: 1.25rem;
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.25rem;
+    border: 1px solid var(--color-rule);
+    background-color: color-mix(in srgb, var(--color-inverse) 5%, transparent);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow:
+      0 10px 30px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(247, 236, 224, 0.06);
+    padding: 1.5rem;
+    transition:
+      border-color 300ms var(--ease-still),
+      box-shadow 300ms var(--ease-still),
+      transform 300ms var(--ease-still);
   }
 
   @media (min-width: 768px) {
@@ -141,10 +224,18 @@
     }
   }
 
-  /* The printed label block that carries a sheet's metadata. */
+  .sheet:hover {
+    border-color: color-mix(in srgb, var(--color-accent) 35%, transparent);
+    box-shadow:
+      0 16px 40px rgba(0, 0, 0, 0.4),
+      0 0 0 1px color-mix(in srgb, var(--color-accent) 12%, transparent),
+      inset 0 1px 0 rgba(247, 236, 224, 0.08);
+  }
+
+  /* The printed label block, now gold on dark. */
   .label {
     font-family: var(--font-body);
-    font-size: 0.65rem;
+    font-size: 0.68rem;
     font-weight: 600;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -161,27 +252,67 @@
 
   .determination dd {
     font-family: var(--font-serif);
+    font-weight: 600;
     font-size: 0.95rem;
     color: var(--color-ink);
   }
 
+  /* Gradient-filled headline word, Polgasowita's signature move. */
+  .gradient-text {
+    background-image: linear-gradient(135deg, var(--color-accent) 0%, #f3d98a 50%, var(--color-accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Hairline grid texture behind the hero and a few section openers. */
+  .grid-pattern {
+    background-image:
+      linear-gradient(var(--color-rule) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-rule) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  .gold-line {
+    height: 2px;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  }
+
+  .animation-delay-150 {
+    animation-delay: 150ms;
+  }
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+  .animation-delay-450 {
+    animation-delay: 450ms;
+  }
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+  .animation-delay-800 {
+    animation-delay: 800ms;
+  }
+
   /*
-   * Reveal. Opacity only — no movement. A herbarium sheet does not slide onto
-   * the page, and the restraint is the point of this design.
+   * Reveal. Now fade-up with a little lift, matching Polgasowita's motion —
+   * this replaces the old opacity-only rule.
    */
   .reveal {
-    transition: opacity 500ms var(--ease-still);
+    transition:
+      opacity 700ms var(--ease-still),
+      transform 700ms var(--ease-still);
     transition-delay: var(--reveal-delay, 0ms);
   }
 
   .reveal.is-hidden {
     opacity: 0;
+    transform: translateY(1.25rem);
   }
 
-  /*
-   * Entry splash. Opacity only, exactly like `.reveal` above — no client JS,
-   * so the page stays reachable with JavaScript off.
-   */
+  /* Entry splash. Pure CSS — no client JS — so it degrades correctly with
+     JavaScript off. */
   .splash-screen {
     animation: splash-out 500ms var(--ease-still) 2200ms forwards;
   }
@@ -210,7 +341,7 @@
       transform: scale(1);
     }
     to {
-      transform: scale(1.07);
+      transform: scale(1.09);
     }
   }
 }

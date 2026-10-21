@@ -1,182 +1,180 @@
 import Link from 'next/link';
-import { Facebook, Instagram, Mail, MessageCircle, Music2, Youtube } from 'lucide-react';
+import { ArrowUpRight, Facebook, Instagram, Mail, MapPin, MessageCircle, Music2, Youtube } from 'lucide-react';
 import { club } from '@/content/club';
 
 /**
- * Colophon footer — the affiliation chain set as a printed sentence rather than
- * a row of logos, so the district never out-shouts the club on the club's own
- * site.
+ * Footer, rebuilt to follow Leo Club of Polgasowita's: a gold top line, a
+ * closing call-to-action, then a four-column grid, in this club's own
+ * maroon/gold ground rather than Polgasowita's navy.
  *
  * A server component: no state, and the year resolves at build time.
  */
-const columns = [
-  {
-    heading: 'The club',
-    links: [
-      { href: '/about', label: 'About' },
-      { href: '/board', label: 'Board' },
-      { href: '/past-presidents', label: 'Past Presidents' },
-      { href: '/achievements', label: 'Awards' },
-    ],
-  },
-  {
-    heading: 'The work',
-    links: [
-      { href: '/projects', label: 'Project records' },
-      { href: '/gallery', label: 'Plates' },
-    ],
-  },
-  {
-    heading: 'Take part',
-    links: [
-      { href: '/join', label: 'Join the club' },
-      { href: '/contact', label: 'Contact' },
-    ],
-  },
+const navLinks = [
+  { href: '/about', label: 'About' },
+  { href: '/projects', label: 'Records' },
+  { href: '/board', label: 'Board' },
+  { href: '/achievements', label: 'Awards' },
+] as const;
+
+const socials = [
+  { icon: Facebook, href: club.socials.facebook, label: 'Facebook' },
+  { icon: Instagram, href: club.socials.instagram, label: 'Instagram' },
+  { icon: Youtube, href: club.socials.youtube, label: 'YouTube' },
+  { icon: Music2, href: club.socials.tiktok, label: 'TikTok' },
+  { icon: MessageCircle, href: club.socials.whatsapp, label: 'WhatsApp Channel' },
 ] as const;
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
+  const activeSocials = socials.filter((item) => item.href);
 
   return (
-    <footer className="mt-20 border-t border-rule-strong bg-panel">
-      <div className="wrap py-16">
-        <div className="grid gap-12 md:grid-cols-12">
-          <div className="md:col-span-5">
-            <p className="label">Leo District 306 D2</p>
-            <p className="mt-3 font-serif text-2xl leading-snug text-ink">{club.name}</p>
-            <p className="mt-3 text-sm text-ink-muted italic">{club.motto}</p>
-            <p className="measure mt-5 text-sm leading-relaxed text-ink-muted">
-              {club.description}
-            </p>
+    <footer className="relative overflow-hidden border-t border-rule bg-panel">
+      <div className="gold-line" />
+      <div
+        aria-hidden
+        className="absolute top-0 left-1/2 h-72 w-[36rem] -translate-x-1/2 rounded-full bg-accent/[0.04] blur-[100px]"
+      />
+      <div aria-hidden className="grid-pattern absolute inset-0 opacity-10" />
 
-            <ul className="mt-7 flex gap-3">
-              {club.socials.facebook ? (
-                <li>
-                  <a
-                    href={club.socials.facebook}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    aria-label="Facebook"
-                    className="inline-flex h-10 w-10 items-center justify-center border border-rule-strong text-ink-muted transition-colors hover:border-accent hover:text-accent"
-                  >
-                    <Facebook aria-hidden size={17} />
-                  </a>
-                </li>
-              ) : null}
-              {club.socials.instagram ? (
-                <li>
-                  <a
-                    href={club.socials.instagram}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    aria-label="Instagram"
-                    className="inline-flex h-10 w-10 items-center justify-center border border-rule-strong text-ink-muted transition-colors hover:border-accent hover:text-accent"
-                  >
-                    <Instagram aria-hidden size={17} />
-                  </a>
-                </li>
-              ) : null}
-              {club.socials.youtube ? (
-                <li>
-                  <a
-                    href={club.socials.youtube}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    aria-label="YouTube"
-                    className="inline-flex h-10 w-10 items-center justify-center border border-rule-strong text-ink-muted transition-colors hover:border-accent hover:text-accent"
-                  >
-                    <Youtube aria-hidden size={17} />
-                  </a>
-                </li>
-              ) : null}
-              {club.socials.tiktok ? (
-                <li>
-                  <a
-                    href={club.socials.tiktok}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    aria-label="TikTok"
-                    className="inline-flex h-10 w-10 items-center justify-center border border-rule-strong text-ink-muted transition-colors hover:border-accent hover:text-accent"
-                  >
-                    <Music2 aria-hidden size={17} />
-                  </a>
-                </li>
-              ) : null}
-              {club.socials.whatsapp ? (
-                <li>
-                  <a
-                    href={club.socials.whatsapp}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    aria-label="WhatsApp Channel"
-                    className="inline-flex h-10 w-10 items-center justify-center border border-rule-strong text-ink-muted transition-colors hover:border-accent hover:text-accent"
-                  >
-                    <MessageCircle aria-hidden size={17} />
-                  </a>
-                </li>
-              ) : null}
-              {club.contact.email ? (
-                <li>
-                  <a
-                    href={`mailto:${club.contact.email}`}
-                    aria-label="Email"
-                    className="inline-flex h-10 w-10 items-center justify-center border border-rule-strong text-ink-muted transition-colors hover:border-accent hover:text-accent"
-                  >
-                    <Mail aria-hidden size={17} />
-                  </a>
-                </li>
-              ) : null}
-            </ul>
-          </div>
-
-          <div className="grid gap-10 sm:grid-cols-3 md:col-span-6 md:col-start-7">
-            {columns.map((column) => (
-              <nav key={column.heading} aria-label={column.heading}>
-                <h2 className="label">{column.heading}</h2>
-                <ul className="mt-4 space-y-2.5">
-                  {column.links.map((link) => (
-                    <li key={link.href}>
-                      <Link
-                        href={link.href}
-                        className="text-sm text-ink-muted underline-offset-4 transition-colors hover:text-accent hover:underline"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            ))}
+      <div className="wrap relative z-10 pt-16 pb-10 md:pt-20">
+        {/* CTA ------------------------------------------------------------ */}
+        <div className="mb-16 text-center">
+          <h2 className="font-serif text-2xl font-semibold text-ink md:text-3xl">
+            Ready to add to the record?
+          </h2>
+          <p className="measure mx-auto mt-3 text-sm text-ink-muted">
+            Join a club of 108 members putting leadership, service and fellowship to work.
+          </p>
+          <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+            <Link
+              href="/join"
+              className="rounded-full bg-gradient-to-r from-accent to-accent-strong px-6 py-3 text-sm font-bold text-on-inverse shadow-[0_0_14px_rgba(227,171,66,0.25)] transition-all duration-300 hover:-translate-y-px hover:shadow-[0_0_25px_rgba(227,171,66,0.35)]"
+            >
+              Join the club
+            </Link>
+            <Link
+              href="/contact"
+              className="rounded-full border border-rule-strong bg-ink/[0.04] px-6 py-3 text-sm font-semibold text-ink-muted transition-all duration-300 hover:bg-ink/[0.08] hover:text-ink"
+            >
+              Get in touch
+            </Link>
           </div>
         </div>
 
-        <p className="mt-14 border-t border-rule pt-6 text-xs leading-relaxed text-ink-faint">
-          {club.name} is a member club of{' '}
-          <a
-            href={club.districtUrl}
-            target="_blank"
-            rel="noreferrer noopener"
-            className="text-ink-muted underline underline-offset-2 hover:text-accent"
-          >
-            {club.district}
-          </a>
-          , part of{' '}
-          <a
-            href={club.multipleDistrictUrl}
-            target="_blank"
-            rel="noreferrer noopener"
-            className="text-ink-muted underline underline-offset-2 hover:text-accent"
-          >
-            {club.multipleDistrict}
-          </a>
-          , within Lions Clubs International.
-          {club.sponsoringLionsClub ? ` Sponsored by the ${club.sponsoringLionsClub}.` : ''}
-        </p>
+        <div className="h-px bg-rule" />
 
-        <p className="mt-3 text-xs text-ink-faint">
-          © {year} {club.name}.
-        </p>
+        {/* Columns ---------------------------------------------------------- */}
+        <div className="mt-12 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <p className="font-serif text-sm font-bold text-ink">Leo Club</p>
+            <p className="label mt-0.5 text-ink-faint">GWUIM · FISSMS</p>
+            <p className="mt-4 text-sm leading-relaxed text-ink-faint">{club.tagline}</p>
+            {activeSocials.length > 0 ? (
+              <div className="mt-5 flex flex-wrap gap-2">
+                {activeSocials.map(({ icon: Icon, href, label }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    aria-label={label}
+                    className="flex h-8 w-8 items-center justify-center rounded-lg border border-rule bg-ink/[0.04] text-ink-faint transition-colors hover:border-accent/30 hover:bg-accent/10 hover:text-accent"
+                  >
+                    <Icon aria-hidden size={14} />
+                  </a>
+                ))}
+              </div>
+            ) : null}
+          </div>
+
+          <nav aria-label="Navigate">
+            <p className="label">Navigate</p>
+            <ul className="mt-4 space-y-2">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm font-medium text-ink-faint transition-colors hover:text-accent"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div>
+            <p className="label">Contact</p>
+            <ul className="mt-4 space-y-3">
+              {club.contact.email ? (
+                <li className="flex items-center gap-2.5">
+                  <Mail aria-hidden size={14} className="shrink-0 text-accent/60" />
+                  <a
+                    href={`mailto:${club.contact.email}`}
+                    className="text-sm font-medium text-ink-faint transition-colors hover:text-accent"
+                  >
+                    {club.contact.email}
+                  </a>
+                </li>
+              ) : null}
+              {club.contact.address ? (
+                <li className="flex items-start gap-2.5">
+                  <MapPin aria-hidden size={14} className="mt-0.5 shrink-0 text-accent/60" />
+                  <span className="text-sm text-ink-faint">Indigolla, Gampaha</span>
+                </li>
+              ) : null}
+            </ul>
+            {activeSocials.length > 0 ? (
+              <div className="mt-4 space-y-1.5">
+                {activeSocials.slice(0, 2).map(({ href, label }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="flex items-center gap-1.5 text-xs font-medium text-ink-faint transition-colors hover:text-accent"
+                  >
+                    {label} <ArrowUpRight aria-hidden size={10} />
+                  </a>
+                ))}
+              </div>
+            ) : null}
+          </div>
+
+          <div>
+            <p className="label">Affiliation</p>
+            <p className="mt-4 text-sm leading-relaxed text-ink-faint">
+              A member club of{' '}
+              <a
+                href={club.districtUrl}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="text-ink-muted underline underline-offset-2 hover:text-accent"
+              >
+                {club.district}
+              </a>
+              , part of{' '}
+              <a
+                href={club.multipleDistrictUrl}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="text-ink-muted underline underline-offset-2 hover:text-accent"
+              >
+                {club.multipleDistrict}
+              </a>
+              , within Lions Clubs International.
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-12 h-px bg-rule" />
+        <div className="mt-6 flex flex-col items-center justify-between gap-3 sm:flex-row">
+          <p className="text-xs text-ink-faint">
+            © {year} {club.name}.
+          </p>
+          <p className="text-xs text-ink-faint">Chartered 16 November 2023 · Leo District 306 D2</p>
+        </div>
       </div>
     </footer>
   );

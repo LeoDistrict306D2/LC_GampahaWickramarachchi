@@ -35,7 +35,7 @@ export function JoinForm({ email }: { email: string }) {
   }
 
   const field =
-    'mt-2 w-full border border-rule-strong bg-page px-3 py-2.5 text-ink focus:border-accent focus:outline-none';
+    'mt-2 w-full rounded-xl border border-rule-strong bg-ink/[0.03] px-3.5 py-2.5 text-ink transition-colors focus:border-accent focus:outline-none';
 
   return (
     <form onSubmit={handleSubmit} className="measure">
@@ -68,7 +68,7 @@ export function JoinForm({ email }: { email: string }) {
 
       <button
         type="submit"
-        className="group mt-7 inline-flex items-center gap-2 border border-accent bg-accent px-6 py-3 text-sm text-page transition-colors hover:bg-accent-strong"
+        className="group mt-7 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-accent to-accent-strong px-6 py-3 text-sm font-bold text-on-inverse shadow-[0_0_14px_rgba(227,171,66,0.2)] transition-all duration-300 hover:-translate-y-px hover:shadow-[0_0_24px_rgba(227,171,66,0.35)]"
       >
         Send enquiry
         <ArrowRight aria-hidden size={15} className="transition-transform group-hover:translate-x-1" />

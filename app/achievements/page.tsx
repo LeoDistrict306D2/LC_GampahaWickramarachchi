@@ -32,30 +32,26 @@ export default function AchievementsPage() {
         {awards.length === 0 ? (
           <p className="measure text-ink-muted">No awards recorded yet.</p>
         ) : (
-          <ol className="border-t border-rule-strong">
+          <ol className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {awards.map((award, index) => (
-              <li key={award.id} className="border-b border-rule">
-                <Reveal delay={index * 50}>
-                  <div className="grid gap-3 py-6 md:grid-cols-12 md:gap-8">
-                    <p className="label md:col-span-2 md:pt-1.5">{award.year}</p>
-                    <div className="md:col-span-7">
-                      <h2 className="font-serif text-xl text-ink">{award.title}</h2>
-                      {award.competition ? (
-                        <p className="label mt-1.5 text-ink-faint">{award.competition}</p>
-                      ) : null}
-                      {award.description ? (
-                        <p className="measure mt-2.5 text-sm leading-relaxed text-ink-muted">
-                          {award.description}
-                        </p>
-                      ) : null}
-                    </div>
-                    <div className="md:col-span-3 md:text-right">
+              <li key={award.id}>
+                <Reveal delay={index * 60}>
+                  <div className="sheet flex h-full flex-col">
+                    <div className="flex items-start justify-between gap-3">
+                      <span className="label text-accent/80">{award.year}</span>
                       {award.level ? (
-                        <span className="inline-block border border-rule-strong px-3 py-1 text-xs text-ink-muted">
+                        <span className="rounded-full border border-rule-strong px-2.5 py-1 text-[0.65rem] font-semibold text-ink-muted uppercase">
                           {levelLabel[award.level] ?? award.level}
                         </span>
                       ) : null}
                     </div>
+                    <h2 className="mt-3 font-serif text-lg leading-snug font-bold text-ink">{award.title}</h2>
+                    {award.competition ? (
+                      <p className="label mt-1.5 text-ink-faint">{award.competition}</p>
+                    ) : null}
+                    {award.description ? (
+                      <p className="mt-3 text-sm leading-relaxed text-ink-muted">{award.description}</p>
+                    ) : null}
                   </div>
                 </Reveal>
               </li>

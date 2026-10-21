@@ -63,11 +63,11 @@ export function SiteHeader() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-rule-strong bg-page/97 backdrop-blur-sm">
+    <header className="sticky top-0 z-50 border-b border-rule bg-page/85 backdrop-blur-xl">
       <div className="wrap flex h-20 items-center justify-between gap-6">
         <Link href="/" className="flex flex-col gap-1" aria-label={`${club.name} — home`}>
           <span className="label">Gampaha Wickramarachchi University · FISSMS</span>
-          <span className="font-serif text-lg leading-none text-ink">Leo Club</span>
+          <span className="font-serif text-lg leading-none font-semibold text-ink">Leo Club</span>
         </Link>
 
         <nav aria-label="Primary" className="hidden lg:block">
@@ -96,7 +96,7 @@ export function SiteHeader() {
 
         <Link
           href="/join"
-          className="hidden shrink-0 border border-accent px-4 py-2 text-sm text-accent transition-colors hover:bg-accent hover:text-page lg:inline-block"
+          className="hidden shrink-0 rounded-full bg-gradient-to-r from-accent to-accent-strong px-5 py-2.5 text-sm font-semibold text-on-inverse shadow-[0_0_14px_rgba(227,171,66,0.25)] transition-all duration-300 hover:-translate-y-px hover:shadow-[0_0_24px_rgba(227,171,66,0.4)] lg:inline-block"
         >
           Join
         </Link>
@@ -142,7 +142,7 @@ export function SiteHeader() {
           </ul>
           <Link
             href="/join"
-            className="mt-4 mb-4 block border border-accent px-4 py-3 text-center text-sm text-accent"
+            className="mt-4 mb-4 block rounded-full bg-gradient-to-r from-accent to-accent-strong px-4 py-3 text-center text-sm font-semibold text-on-inverse"
           >
             Join the club
           </Link>

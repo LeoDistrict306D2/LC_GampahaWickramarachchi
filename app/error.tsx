@@ -23,7 +23,7 @@ export default function Error({
       <button
         type="button"
         onClick={reset}
-        className="mt-8 self-start border border-accent bg-accent px-6 py-3 text-sm text-page hover:bg-accent-strong"
+        className="mt-8 self-start rounded-full bg-gradient-to-r from-accent to-accent-strong px-6 py-3 text-sm font-bold text-on-inverse"
       >
         Try again
       </button>

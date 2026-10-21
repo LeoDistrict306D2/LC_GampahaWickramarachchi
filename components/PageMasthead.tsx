@@ -17,7 +17,10 @@ export function PageMasthead({
   breadcrumb?: { href: '/projects'; label: string };
 }) {
   return (
-    <div className="wrap border-b border-rule-strong pt-12 pb-10 md:pt-18 md:pb-14">
+    <div className="relative overflow-hidden border-b border-rule bg-panel">
+      <div aria-hidden className="grid-pattern absolute inset-0 opacity-10" />
+      <div aria-hidden className="absolute top-0 left-1/4 h-72 w-72 rounded-full bg-accent/[0.06] blur-[120px]" />
+      <div className="wrap relative z-10 pt-12 pb-10 md:pt-18 md:pb-14">
       {breadcrumb ? (
         <nav aria-label="Breadcrumb" className="mb-6">
           <Link href={breadcrumb.href} className="text-sm text-accent hover:text-accent-strong">
@@ -35,6 +38,7 @@ export function PageMasthead({
       {standfirst ? (
         <p className="measure mt-5 text-lg leading-relaxed text-ink-muted">{standfirst}</p>
       ) : null}
+      </div>
     </div>
   );
 }

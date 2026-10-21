@@ -41,33 +41,36 @@ export default function AboutPage() {
             plate="Pl. 2"
           />
 
-          <dl className="determination mt-10 border-t border-rule-strong">
-            {[
-              { term: 'Club number', value: club.clubNumber ?? '—' },
-              { term: 'Chartered', value: club.charterDate?.slice(0, 4) ?? '—' },
-              { term: 'Club type', value: club.clubType ?? '—' },
-              { term: 'Region / Zone', value: [club.region, club.zone].filter(Boolean).join(' / ') || '—' },
-              { term: 'District', value: club.district },
-              { term: 'Multiple district', value: club.multipleDistrict },
-            ].map((row) => (
-              <div key={row.term} className="flex justify-between gap-4 border-b border-rule py-3">
-                <dt>{row.term}</dt>
-                <dd className="text-right">{row.value}</dd>
-              </div>
-            ))}
-          </dl>
+          <div className="sheet mt-10">
+            <dl className="determination">
+              {[
+                { term: 'Club number', value: club.clubNumber ?? '—' },
+                { term: 'Chartered', value: club.charterDate?.slice(0, 4) ?? '—' },
+                { term: 'Club type', value: club.clubType ?? '—' },
+                { term: 'Region / Zone', value: [club.region, club.zone].filter(Boolean).join(' / ') || '—' },
+                { term: 'District', value: club.district },
+                { term: 'Multiple district', value: club.multipleDistrict },
+              ].map((row) => (
+                <div key={row.term} className="flex justify-between gap-4 border-b border-rule py-3 last:border-b-0">
+                  <dt>{row.term}</dt>
+                  <dd className="text-right">{row.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         </aside>
       </div>
 
-      <section className="border-y border-rule-strong bg-panel band">
-        <div className="wrap grid gap-10 md:grid-cols-2">
-          <div>
+      <section className="relative overflow-hidden border-y border-rule bg-panel band">
+        <div aria-hidden className="grid-pattern absolute inset-0 opacity-10" />
+        <div className="wrap relative z-10 grid gap-6 md:grid-cols-2">
+          <div className="sheet">
             <p className="label">Mission</p>
-            <p className="mt-4 font-serif text-2xl leading-snug text-ink">{club.about.mission}</p>
+            <p className="mt-4 font-serif text-2xl leading-snug font-semibold text-ink">{club.about.mission}</p>
           </div>
-          <div>
+          <div className="sheet">
             <p className="label">Vision</p>
-            <p className="mt-4 font-serif text-2xl leading-snug text-ink">{club.about.vision}</p>
+            <p className="mt-4 font-serif text-2xl leading-snug font-semibold text-ink">{club.about.vision}</p>
           </div>
         </div>
       </section>
@@ -94,7 +97,7 @@ export default function AboutPage() {
           ].map((area) => (
             <li
               key={area}
-              className="border border-rule-strong px-3.5 py-1.5 text-sm text-ink-muted"
+              className="rounded-full border border-rule-strong bg-ink/[0.04] px-4 py-1.5 text-sm text-ink-muted transition-colors hover:border-accent/30 hover:text-accent"
             >
               {area}
             </li>

@@ -24,6 +24,7 @@ export function Photo({
   plate,
   className,
   kenBurns = false,
+  rounded = true,
 }: {
   image: ImageRef;
   ratio?: keyof typeof ratios;
@@ -34,10 +35,18 @@ export function Photo({
   className?: string;
   /** A slow, looping zoom. Reserved for the banner plate — never a listing photo. */
   kenBurns?: boolean;
+  /** Set false when an already-rounded wrapper (e.g. a card) clips this image itself. */
+  rounded?: boolean;
 }) {
   return (
     <figure className={cn('m-0', className)}>
-      <div className={cn('relative overflow-hidden border border-rule-strong bg-panel', ratios[ratio])}>
+      <div
+        className={cn(
+          'relative overflow-hidden border border-rule-strong bg-panel',
+          rounded && 'rounded-2xl',
+          ratios[ratio],
+        )}
+      >
         <Image
           src={image.src}
           alt={image.alt}

@@ -42,15 +42,15 @@ export default function JoinPage() {
           <p className="label" id="why">
             What membership involves
           </p>
-          <ol className="mt-6 border-t border-rule">
+          <ol className="mt-6 flex flex-col gap-3">
             {reasons.map((reason, index) => (
-              <li key={reason.title} className="border-b border-rule py-5">
-                <div className="flex gap-5">
-                  <span className="label mt-1 shrink-0" aria-hidden>
+              <li key={reason.title}>
+                <div className="sheet flex gap-5">
+                  <span className="label mt-1 shrink-0 text-accent/70" aria-hidden>
                     {String(index + 1).padStart(2, '0')}
                   </span>
                   <div>
-                    <h2 className="font-serif text-lg text-ink">{reason.title}</h2>
+                    <h2 className="font-serif text-lg font-semibold text-ink">{reason.title}</h2>
                     <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">{reason.body}</p>
                   </div>
                 </div>

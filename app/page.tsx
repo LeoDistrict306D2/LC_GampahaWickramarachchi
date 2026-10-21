@@ -5,19 +5,56 @@ import { club } from '@/content/club';
 import { projects } from '@/content/projects';
 import { board } from '@/content/board';
 import { byDateDesc, sortExecutives, cn } from '@/lib/utils';
-import { Photo } from '@/components/Photo';
 import { Reveal } from '@/components/Reveal';
 import { Determination } from '@/components/Determination';
 import { SpecimenSheet, accessionFor } from '@/components/SpecimenSheet';
+import { Hero, type HeroSlide } from '@/components/Hero';
 import { district } from '@/content/district';
 
 /**
  * Home.
  *
- * Reads as the opening of a bound record: title page, plate, determination
- * table, method, then the specimen sheets themselves. Evidence before
- * personality — the board sits after the work, not before it.
+ * Leads with a full-bleed photo slideshow and a stat band — the pattern Leo
+ * Club of Polgasowita's own home page uses — then the record itself:
+ * method, specimen sheets, board, district. Evidence before personality —
+ * the board still sits after the work, not before it.
  */
+const heroSlides: HeroSlide[] = [
+  {
+    image: club.heroImage,
+    kicker: 'Leadership · Service · Fellowship · Inspiration',
+    heading: 'Leadership, service,',
+    accent: 'fellowship, inspiration.',
+    description: club.description,
+  },
+  {
+    image: {
+      src: '/images/about/aurora-25.jpg',
+      alt: 'Club members at AURORA ’25, Leo District 306 D2’s inaugural installation ceremony',
+      width: 2000,
+      height: 1222,
+    },
+    kicker: 'AURORA ’25',
+    heading: 'Installed, and',
+    accent: 'still showing up.',
+    description:
+      'From the district’s inaugural installation ceremony to a Top 10 Leo Club recognition in 2025/26 — a record built one Leoistic year at a time.',
+  },
+  {
+    image: {
+      src: '/images/gallery/aurora-group.jpg',
+      alt: 'Club members in a group photo at AURORA ’25',
+      width: 2000,
+      height: 1333,
+    },
+    kicker: '108 members',
+    heading: 'A faculty,',
+    accent: 'working as one.',
+    description:
+      'Active across eight service focus areas — healthcare, education, environment and more — chartered 16 November 2023.',
+  },
+];
+
 export default function HomePage() {
   const ordered = byDateDesc(projects);
   const featured = ordered.filter((project) => project.featured).slice(0, 3);
@@ -26,85 +63,42 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Title page ----------------------------------------------------- */}
-      <section className="wrap pt-14 pb-10 md:pt-20 md:pb-14">
-        <p className="label">
-          {club.district}
-          {charterYear ? ` · Chartered ${charterYear}` : ''}
-        </p>
+      <Hero slides={heroSlides} charterYear={charterYear} />
 
-        <h1 className="mt-6 max-w-4xl font-serif text-5xl leading-[1.04] text-ink md:text-6xl">
-          {club.tagline}
-        </h1>
+      {/* Record to date --------------------------------------------------- */}
+      <div className="wrap band">
+        <Determination stats={club.stats} label="Record to date" />
+      </div>
 
-        <div className="mt-10 grid gap-8 border-t border-rule-strong pt-8 md:grid-cols-12">
-          <p className="text-lg leading-relaxed text-ink-muted md:col-span-7">
-            {club.description}
-          </p>
-          <div className="flex flex-wrap items-start gap-3 md:col-span-5 md:justify-end">
-            <Link
-              href="/projects"
-              className="group inline-flex items-center gap-2 border border-accent bg-accent px-6 py-3 text-sm text-page transition-colors hover:bg-accent-strong"
-            >
-              Project records
-              <ArrowRight
-                aria-hidden
-                size={15}
-                className="transition-transform group-hover:translate-x-1"
-              />
-            </Link>
-            <Link
-              href="/join"
-              className="inline-flex items-center border border-rule-strong px-6 py-3 text-sm text-ink transition-colors hover:border-ink"
-            >
-              Join the club
-            </Link>
+      {/* Method ------------------------------------------------------------ */}
+      <section className="relative overflow-hidden border-y border-rule bg-panel" aria-labelledby="method">
+        <div aria-hidden className="grid-pattern absolute inset-0 opacity-10" />
+        <div className="wrap band relative z-10">
+          <div className="text-center">
+            <p className="label">What we stand for</p>
+            <h2 id="method" className="mt-3 font-serif text-3xl text-ink md:text-4xl">
+              Method
+            </h2>
+            <div className="gold-line mx-auto mt-4 w-12" />
           </div>
-        </div>
-      </section>
 
-      <section className="wrap">
-        <Photo
-          image={club.heroImage}
-          ratio="wide"
-          priority
-          sizes="100vw"
-          plate="Pl. 1"
-          kenBurns
-        />
-      </section>
-
-      {/* Determination + method ----------------------------------------- */}
-      <div className="wrap band grid gap-10 md:grid-cols-12">
-        <div className="md:col-span-5">
-          <Determination stats={club.stats} label="Record to date" />
-        </div>
-
-        <section className="md:col-span-6 md:col-start-7" aria-labelledby="method">
-          <h2 id="method" className="font-serif text-3xl text-ink md:text-4xl">
-            Method
-          </h2>
-          <ol className="mt-7 border-t border-rule">
+          <ol className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {club.about.values.map((value, index) => (
-              <li key={value.title} className="border-b border-rule py-5">
-                <Reveal delay={index * 60}>
-                  <div className="flex gap-5">
-                    <span className="label mt-1 shrink-0" aria-hidden>
+              <li key={value.title}>
+                <Reveal delay={index * 80}>
+                  <div className="sheet h-full">
+                    <span className="label text-accent/70" aria-hidden>
                       {String(index + 1).padStart(2, '0')}
                     </span>
-                    <div>
-                      <h3 className="font-serif text-xl text-ink">{value.title}</h3>
-                      <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">
-                        {value.description}
-                      </p>
-                    </div>
+                    <h3 className="mt-4 font-serif text-lg font-semibold text-ink">{value.title}</h3>
+                    <p className="mt-2.5 text-sm leading-relaxed text-ink-muted">{value.description}</p>
                   </div>
                 </Reveal>
               </li>
             ))}
           </ol>
-        </section>
-      </div>
+        </div>
+      </section>
 
       {/* Specimen sheets ------------------------------------------------- */}
       <section className="border-y border-rule-strong bg-panel" aria-labelledby="records">
@@ -193,7 +187,7 @@ export default function HomePage() {
               href={district.url}
               target="_blank"
               rel="noreferrer"
-              className="mt-6 inline-flex items-center gap-2 border border-accent px-6 py-3 text-sm text-accent transition-colors hover:bg-accent hover:text-page"
+              className="mt-6 inline-flex items-center gap-2 rounded-full border border-rule-strong bg-ink/[0.04] px-6 py-3 text-sm font-semibold text-ink-muted transition-all duration-300 hover:border-accent/30 hover:text-accent"
             >
               Explore the district ↗
             </a>

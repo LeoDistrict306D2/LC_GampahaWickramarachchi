@@ -19,20 +19,20 @@ export default function ContactPage() {
       />
 
       <div className="wrap band grid gap-12 md:grid-cols-12">
-        <section className="md:col-span-7" aria-labelledby="details">
+        <section aria-labelledby="details" className="md:col-span-7">
           <p className="label" id="details">
             Details
           </p>
-          <dl className="mt-6 border-t border-rule-strong">
+          <div className="mt-6 flex flex-col gap-3">
             {club.contact.email ? (
-              <div className="flex items-start gap-4 border-b border-rule py-5">
+              <div className="sheet flex items-start gap-4">
                 <Mail aria-hidden size={17} className="mt-1.5 shrink-0 text-accent" />
                 <div>
                   <dt className="label text-ink-faint">Email</dt>
                   <dd className="mt-1.5">
                     <a
                       href={`mailto:${club.contact.email}`}
-                      className="font-serif text-xl break-all text-ink underline underline-offset-4 hover:text-accent"
+                      className="font-serif text-xl font-semibold break-all text-ink underline underline-offset-4 hover:text-accent"
                     >
                       {club.contact.email}
                     </a>
@@ -42,14 +42,14 @@ export default function ContactPage() {
             ) : null}
 
             {club.contact.phone ? (
-              <div className="flex items-start gap-4 border-b border-rule py-5">
+              <div className="sheet flex items-start gap-4">
                 <Phone aria-hidden size={17} className="mt-1.5 shrink-0 text-accent" />
                 <div>
                   <dt className="label text-ink-faint">Phone</dt>
                   <dd className="mt-1.5">
                     <a
                       href={`tel:${club.contact.phone}`}
-                      className="font-serif text-xl text-ink hover:text-accent"
+                      className="font-serif text-xl font-semibold text-ink hover:text-accent"
                     >
                       {club.contact.phone}
                     </a>
@@ -59,24 +59,25 @@ export default function ContactPage() {
             ) : null}
 
             {club.contact.address ? (
-              <div className="flex items-start gap-4 border-b border-rule py-5">
+              <div className="sheet flex items-start gap-4">
                 <MapPin aria-hidden size={17} className="mt-1.5 shrink-0 text-accent" />
                 <div>
                   <dt className="label text-ink-faint">Address</dt>
-                  <dd className="mt-1.5 font-serif text-xl leading-snug text-ink">
+                  <dd className="mt-1.5 font-serif text-xl leading-snug font-semibold text-ink">
                     {club.contact.address}
                   </dd>
                 </div>
               </div>
             ) : null}
-          </dl>
+          </div>
         </section>
 
         <section className="md:col-span-4 md:col-start-9" aria-labelledby="social">
           <p className="label" id="social">
             Elsewhere
           </p>
-          <ul className="mt-6 border-t border-rule">
+          <div className="sheet mt-6">
+          <ul className="border-t border-rule">
             {club.socials.facebook ? (
               <li className="border-b border-rule">
                 <a
@@ -173,6 +174,7 @@ export default function ContactPage() {
             details. Looking to join rather than get in touch? The membership page has a form
             that reaches the secretary directly.
           </p>
+          </div>
         </section>
       </div>
     </>

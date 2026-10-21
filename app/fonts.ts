@@ -1,21 +1,17 @@
-import { Fraunces, Inter } from 'next/font/google';
+import { Space_Grotesk, Inter } from 'next/font/google';
 
 /**
- * Fraunces for headings, Inter for text and labels.
- *
- * Fraunces is a variable serif with optical sizing, which is what a document
- * design needs: the same family reads correctly at a 3.5rem plate title and at
- * a 0.95rem determination value. Inter handles the small-caps label type where
- * a serif would be hard to read at 0.65rem.
+ * Space Grotesk for headings, Inter for text and labels — the same pairing
+ * Leo Club of Polgasowita's site uses, which this site's redesign follows.
  *
  * Loaded via next/font, which self-hosts the files and removes the
  * render-blocking request to fonts.googleapis.com.
  */
-const fraunces = Fraunces({
+const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
-  variable: '--font-fraunces',
+  variable: '--font-space-grotesk',
   display: 'swap',
-  axes: ['SOFT', 'WONK'],
+  weight: ['500', '600', '700'],
 });
 
 const inter = Inter({
@@ -24,4 +20,4 @@ const inter = Inter({
   display: 'swap',
 });
 
-export const fontVariables = `${fraunces.variable} ${inter.variable}`;
+export const fontVariables = `${spaceGrotesk.variable} ${inter.variable}`;
