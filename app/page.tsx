@@ -70,6 +70,7 @@ export default function HomePage() {
           priority
           sizes="100vw"
           plate="Pl. 1"
+          kenBurns
         />
       </section>
 

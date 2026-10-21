@@ -23,6 +23,7 @@ export function Photo({
   sizes = '100vw',
   plate,
   className,
+  kenBurns = false,
 }: {
   image: ImageRef;
   ratio?: keyof typeof ratios;
@@ -31,6 +32,8 @@ export function Photo({
   /** Plate number shown with the caption, e.g. "Pl. 3". */
   plate?: string;
   className?: string;
+  /** A slow, looping zoom. Reserved for the banner plate — never a listing photo. */
+  kenBurns?: boolean;
 }) {
   return (
     <figure className={cn('m-0', className)}>
@@ -42,7 +45,7 @@ export function Photo({
           sizes={sizes}
           priority={priority}
           loading={priority ? undefined : 'lazy'}
-          className="object-cover"
+          className={cn('object-cover', kenBurns && 'animate-ken-burns')}
         />
       </div>
       {image.caption || plate ? (
